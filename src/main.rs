@@ -26,8 +26,8 @@ fn set_columns_to_zero(matrix: [[f64; COLUMNS]; ROWS], row: i32) {}
 // swaps two rows places
 fn swap_rows(matrix: [[f64; COLUMNS]; ROWS], row1: i32, row2: i32) {}
 
-// sets pivot to 1
-fn set_pivot(row: [f64; COLUMNS]) {}
+// sets pivot to 1 in given pivot
+fn set_pivot(row: [f64; COLUMNS], pivot: i32) {}
 
 // start function for REF
 fn into_ref(matrix: [[f64; COLUMNS]; ROWS]) {}
