@@ -1,17 +1,20 @@
 /*
  * Get a 1 in top left
- * Add mults of r1 to get coll of 0s
+ * Add mults of row to get coll of 0s
  * Move down 1 and right until you hit a non-zero
  *  if no nonzero, move that row to last and repeat
  * Repeat 1 and 2
- * Repeat all
+ * Repeat
  * Left with REF
  *
- * Start at bottom right-most one
- * Add mults until coll of 0s
- * Move up and left
+ * Start at top left
+ * For each column:
+ *  find row at or below curr with nonzero entry in column
+ *  None? move right one
+ *  Found? Swap row with curr row
+ * Scale so index = 0
+ * make all other entries in column 0
  * Repeat
- * Left with RREF
  */
 
 fn main() {
