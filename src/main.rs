@@ -21,13 +21,18 @@ const ROWS: usize = 3;
 const COLUMNS: usize = 4;
 
 // sets all the numbers in a column, aside from the given row, to 0 using the given row
-fn set_columns_to_zero(matrix: [[f64; COLUMNS]; ROWS], row: i32) {}
+fn set_columns_to_zero(matrix: [[f64; COLUMNS]; ROWS], row: usize) {}
 
 // swaps two rows places
-fn swap_rows(matrix: [[f64; COLUMNS]; ROWS], row1: i32, row2: i32) {}
+fn swap_rows(matrix: [[f64; COLUMNS]; ROWS], row1: usize, row2: usize) {}
 
 // sets pivot to 1 in given pivot
-fn set_pivot(row: [f64; COLUMNS], pivot: i32) {}
+fn set_pivot(mut row: [f64; COLUMNS], pivot: usize) {
+    let pivot_value = row[pivot];
+    for i in 0..COLUMNS {
+        row[i] = row[i] / pivot_value;
+    }
+}
 
 // start function for REF
 fn into_ref(matrix: [[f64; COLUMNS]; ROWS]) {}
