@@ -17,6 +17,11 @@
  * Repeat
  */
 
+
+fn into_ref(matrix: [[f64; 4]; 3]) {}
+
+fn into_rref(matrix: [[f64; 4]; 3]) {}
+
 fn main() {
     // proper RREF solution is 1, -1, 2
     let matrix: [[f64; 4]; 3] = [
