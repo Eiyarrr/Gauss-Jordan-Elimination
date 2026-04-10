@@ -20,8 +20,8 @@
 const ROWS: usize = 3;
 const COLUMNS: usize = 4;
 
-// sets all the numbers in a column, aside from the given row, to 0 using the given row
-fn set_columns_to_zero(matrix: [[f64; COLUMNS]; ROWS], row: usize) {}
+// sets all the numbers in a column, aside from the given row, to 0 using the given row and pivot
+fn set_columns_to_zero(matrix: [[f64; COLUMNS]; ROWS], row: usize, pivot: usize) {}
 
 // swaps two rows places
 fn swap_rows(
