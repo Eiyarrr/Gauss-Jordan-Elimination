@@ -21,7 +21,26 @@ const ROWS: usize = 3;
 const COLUMNS: usize = 4;
 
 // sets all the numbers in a column, aside from the given row, to 0 using the given row and pivot
-fn set_rows_to_zero(matrix: [[f64; COLUMNS]; ROWS], row: usize, pivot: usize) {}
+// assumes pivot is 1 (as it should be)
+fn set_rows_to_zero(
+    mut matrix: [[f64; COLUMNS]; ROWS],
+    row: usize,
+    pivot: usize,
+) -> [[f64; COLUMNS]; ROWS] {
+    for r in 0..ROWS {
+        if r == row {
+            continue;
+        }
+        if matrix[r][pivot] == 0.0 {
+            continue;
+        }
+        let d = -matrix[r][pivot];
+        for c in 0..COLUMNS {
+            matrix[r][c] = matrix[r][c] + d * matrix[row][c];
+        }
+    }
+    return matrix;
+}
 
 // swaps two rows places
 fn swap_rows(
@@ -67,7 +86,7 @@ fn print_row(row: [f64; COLUMNS]) {
 
 fn main() {
     // proper RREF solution is 1, -1, 2
-    let matrix: [[f64; COLUMNS]; ROWS] = [
+    let mut matrix: [[f64; COLUMNS]; ROWS] = [
         [2.0, -5.0, 5.0, 17.0],
         [0.0, 1.0, 3.0, 5.0],
         [1.0, -2.0, 3.0, 9.0],
