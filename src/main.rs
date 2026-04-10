@@ -22,7 +22,7 @@ const COLUMNS: usize = 4;
 
 // sets all the numbers in a column, aside from the given row, to 0 using the given row and pivot
 // assumes pivot is 1 (as it should be)
-fn set_rows_to_zero(
+fn set_column_to_zero(
     mut matrix: [[f64; COLUMNS]; ROWS],
     row: usize,
     pivot: usize,
@@ -34,9 +34,8 @@ fn set_rows_to_zero(
         if matrix[r][pivot] == 0.0 {
             continue;
         }
-        let d = -matrix[r][pivot];
         for c in 0..COLUMNS {
-            matrix[r][c] = matrix[r][c] + d * matrix[row][c];
+            matrix[r][c] = matrix[r][c] + -matrix[r][pivot] * matrix[row][c];
         }
     }
     return matrix;
@@ -91,4 +90,8 @@ fn main() {
         [0.0, 1.0, 3.0, 5.0],
         [1.0, -2.0, 3.0, 9.0],
     ];
+    matrix[0] = set_pivot(matrix[0], 0);
+    print_matrix(matrix);
+    matrix = set_column_to_zero(matrix, 0, 0);
+    print_matrix(matrix);
 }
