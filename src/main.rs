@@ -27,11 +27,12 @@ fn set_columns_to_zero(matrix: [[f64; COLUMNS]; ROWS], row: usize) {}
 fn swap_rows(matrix: [[f64; COLUMNS]; ROWS], row1: usize, row2: usize) {}
 
 // sets pivot to 1 in given pivot
-fn set_pivot(mut row: [f64; COLUMNS], pivot: usize) {
+fn set_pivot(mut row: [f64; COLUMNS], pivot: usize) -> [f64; COLUMNS] {
     let pivot_value = row[pivot];
     for i in 0..COLUMNS {
         row[i] = row[i] / pivot_value;
     }
+    return row;
 }
 
 // start function for REF
