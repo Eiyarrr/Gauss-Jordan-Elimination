@@ -24,7 +24,16 @@ const COLUMNS: usize = 4;
 fn set_columns_to_zero(matrix: [[f64; COLUMNS]; ROWS], row: usize) {}
 
 // swaps two rows places
-fn swap_rows(matrix: [[f64; COLUMNS]; ROWS], row1: usize, row2: usize) {}
+fn swap_rows(
+    mut matrix: [[f64; COLUMNS]; ROWS],
+    row1: usize,
+    row2: usize,
+) -> [[f64; COLUMNS]; ROWS] {
+    let temp_row: [f64; COLUMNS] = matrix[row1];
+    matrix[row1] = matrix[row2];
+    matrix[row2] = temp_row;
+    return matrix;
+}
 
 // sets pivot to 1 in given pivot
 fn set_pivot(mut row: [f64; COLUMNS], pivot: usize) -> [f64; COLUMNS] {
