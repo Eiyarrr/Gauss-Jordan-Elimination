@@ -41,7 +41,11 @@ fn into_ref(matrix: [[f64; COLUMNS]; ROWS]) {}
 // start function for RREF
 fn into_rref(matrix: [[f64; COLUMNS]; ROWS]) {}
 
-fn print_matrix(matrix: [[f64; COLUMNS]; ROWS]) {}
+fn print_matrix(matrix: [[f64; COLUMNS]; ROWS]) {
+    for i in 0..ROWS {
+        print_row(matrix[i]);
+    }
+}
 
 fn print_row(row: [f64; COLUMNS]) {
     let row_as_str: String = row
