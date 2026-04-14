@@ -1,22 +1,3 @@
-/*
- * Get a 1 in top left
- * Add mults of row to get coll of 0s
- * Move down 1 and right until you hit a non-zero
- *  if no nonzero, move that row to last and repeat
- * Repeat 1 and 2
- * Repeat
- * Left with REF
- *
- * Start at top left
- * For each column:
- *  find row at or below curr with nonzero entry in column
- *  None? move right one
- *  Found? Swap row with curr row
- * Scale so pivot = 1
- * make all other entries in column 0
- * Repeat
- */
-
 const ROWS: usize = 3;
 const COLUMNS: usize = 4;
 
@@ -63,11 +44,19 @@ fn set_pivot(mut row: [f64; COLUMNS], pivot: usize) -> [f64; COLUMNS] {
     return row;
 }
 
-// start function for REF
-fn into_ref(matrix: [[f64; COLUMNS]; ROWS]) {}
+fn into_rref(mut matrix: [[f64; COLUMNS]; ROWS]) -> [[f64; COLUMNS]; ROWS] {
+    let mut p = 0;
+    for r in 0..ROWS {
+        if matrix[r][p] == 0.0 {
+            matrix = swap_rows(matrix, r, ROWS - 1)
+        }
+        matrix[r] = set_pivot(matrix[r], p);
+        matrix = set_column_to_zero(matrix, r, p);
 
-// start function for RREF
-fn into_rref(matrix: [[f64; COLUMNS]; ROWS]) {}
+        p += 1;
+    }
+    return matrix;
+}
 
 fn print_matrix(matrix: [[f64; COLUMNS]; ROWS]) {
     for i in 0..ROWS {
@@ -86,9 +75,11 @@ fn print_row(row: [f64; COLUMNS]) {
 
 fn main() {
     // proper RREF solution is 1, -1, 2
-    let mut matrix: [[f64; COLUMNS]; ROWS] = [
-        [2.0, -5.0, 5.0, 17.0],
-        [0.0, 1.0, 3.0, 5.0],
-        [1.0, -2.0, 3.0, 9.0],
+    let matrix: [[f64; COLUMNS]; ROWS] = [
+        [2.0, -4.0, 3.0, 5.0],
+        [-1.0, 3.0, -1.0, -3.0],
+        [2.0, -0.0, -4.0, 6.0],
     ];
+    let matrix = into_rref(matrix);
+    print_matrix(matrix);
 }
